@@ -3,3 +3,11 @@ System Volume Information
 FOUND.
 $RECYCLE
 .DS_Store
+Music Instrument Samples
+iTunes Media
+Video Projects
+Telltale Games
+BS Show
+Full Games
+Videos To Sort
+Archive.zip
