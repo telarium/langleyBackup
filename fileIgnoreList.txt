@@ -2,3 +2,4 @@
 System Volume Information
 FOUND.
 $RECYCLE
+.DS_Store
