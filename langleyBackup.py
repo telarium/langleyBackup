@@ -28,19 +28,42 @@ class LangleyBackup():
 			return True
 		elif dir.find('System Volume Information') != -1:
 			return True
+		elif dir.find('FOUND.') != -1:
+			return True
+		elif dir.find('$RECYCLE') != -1:
+                        return True
 
 		return False
 
 	def getLocalDirectoryList(self):
 		statvfs = os.statvfs('/mnt/usb1/')
-		label = subprocess.check_output(['sudo','blkid','-o','value','-s','LABEL','/dev/sdb1']).rstrip()
+		blocks = statvfs.f_frsize * statvfs.f_bfree
+		label = subprocess.check_output(['sudo','blkid','-o','value','-s','LABEL','/dev/sda1']).rstrip()
+		try:
+			f = open(PATH+'/fileList.txt', 'r')
+			fileInfo = f.read().split('\n')
+			print int(fileInfo[0].rstrip()) == blocks
+			print "vs"
+			print label == fileInfo[1].rstrip()
+			f.close()
+			if int(fileInfo[0].rstrip()) == blocks and fileInfo[1].rstrip() == label:
+				print "File log not updated."
+				# Files on hard drive haven't changed. Don't recreate document.
+				return
+		except:
+			f = None
+
 		f = open(PATH+'/fileList.txt', 'w')
-		f.write(str(statvfs.f_frsize * statvfs.f_bfree)+'\n'+label+'\n')
+		f.write(str(blocks)+'\n'+label+'\n')
 		f.close()
 		f = open(PATH+'/fileList.txt', 'a')
+		dir = None
+		print "Scanning file system..."
 		for x in os.walk('/mnt/usb1'):
-			if not self.ignoreDirectory(x[0]):
-                                f.write(x[0]+'\n')
+			dir = x[0]
+			if not self.ignoreDirectory(dir):
+				dir.replace('mnt/usb1','Root/')
+                                f.write(dir+'\n')
 
 		f.close()
 
