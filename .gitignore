@@ -1,5 +1,6 @@
 fileList.txt
-megaLogin.txt
+fileIgnoreList.txt
+.megaLogin
 *.py.save
 
 # Build and Release Folders
