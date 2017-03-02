@@ -34,6 +34,6 @@ read email
 echo -n "Enter your Mega Upload account password: "
 read pwd
 
-printf "$email\n$pwd" | sudo tee megaLogin.txt -a
+printf "$email\n$pwd" | sudo tee .megaLogin -a
 
 

@@ -19,7 +19,7 @@ class LangleyBackup():
 
 	def getMegaCredentials(self):
 		print "Logging into Mega Upload..."
-		lines = open(PATH+'/megaLogin.txt','r').read().split('\n')
+		lines = open(PATH+'/.megaLogin','r').read().split('\n')
 		self.megaUsername = lines[0].rstrip()
 		self.megaPassword = lines[1].rstrip()
 
