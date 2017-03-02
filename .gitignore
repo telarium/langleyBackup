@@ -1,5 +1,6 @@
 fileList.txt
 megaLogin.txt
+*.py.save
 
 # Build and Release Folders
 bin/
