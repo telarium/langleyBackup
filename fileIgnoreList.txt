@@ -1,1 +1,4 @@
 # Place names of directories or filese here you don't want to upload
+System Volume Information
+FOUND.
+$RECYCLE
